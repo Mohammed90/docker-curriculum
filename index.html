@@ -330,7 +330,7 @@ pre .chunk {
 </script><script>hljs.initHighlightingOnLoad();</script><title>Docker for Beginners</title></head><body><a href="https://github.com/prakhar1989/docker-curriculum"><img class="github" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a><p><a id="top"></a>
 <img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/logo.png" alt="docker logo"></p>
 <p><em>Learn to build and deploy your distributed applications easily to the cloud with Docker</em></p>
-<p>Written and developed by <a href="http://prakhar.me">Prakhar Srivastav</a> and <a href="https://adicu.com/">ADI</a>.</p>
+<p>Written and developed by <a href="http://prakhar.me">Prakhar Srivastav</a>.</p>
 <p><a href="#top" class="top" id="getting-started">Top</a></p>
 <h2 id="getting-started-faqs">Getting Started: FAQs</h2>
 <h3 id="what-is-docker">What is Docker?</h3>
@@ -344,12 +344,12 @@ pre .chunk {
 <p>VMs are great at providing full process isolation for applications: there are very few ways a problem in the host operating system can affect the software running in the guest operating system, and vice-versa. But this isolation comes at great cost — the computational overhead spent virtualizing hardware for a guest OS to use is substantial.</p>
 <p>Containers take a different approach: by leveraging the low-level mechanics of the host operating system, containers provide most of the isolation of virtual machines at a fraction of the computing power.</p>
 <h3 id="why-should-i-use-it">Why should I use it?</h3>
-<p>Docker's rise has been nothing short of meteoric. Although containers by themselves are not a new technology, it was not until docker arrived that they started to get mainstream attention. By providing standard APIs that made containers easy to use and creating a way for the community to collaborate around libraries of containers, Docker has radically changed the face of technology landscape. In an article published by <a href="http://www.theregister.co.uk/2014/05/23/google_containerization_two_billion/">The Register</a> around 6 months ago, it is claimed that Google runs over <strong>two billion containers per week</strong>.</p>
+<p>Docker's rise has been nothing short of meteoric. Although containers by themselves are not a new technology, it was not until Docker arrived that they started to get mainstream attention. By providing standard APIs that made containers easy to use and creating a way for the community to collaborate around libraries of containers, Docker has radically changed the face of the technology landscape. In an article published by <a href="http://www.theregister.co.uk/2014/05/23/google_containerization_two_billion/">The Register</a> in mid-2014, it was claimed that Google runs over <strong>two billion containers per week</strong>.</p>
 <p><strong>Google Trends for 'Docker'</strong>
 <img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/interest.png" title="interest"></p>
-<p>Apart from that interest in Docker has been continuously growing and the company - Docker Inc itself valued at over a billion dollars! Due to its benefits of efficiency and portability, Docker has been gaining mindshare rapidly is now leading the <strong>Containerization</strong> movement. As a developer going out into the world, it is important that we understand this trend and see how we can benefit from it.</p>
+<p>In addition to Docker's continual growth, Docker, Inc., the developer behind Docker has been valued at over a billion dollars! Due to its benefits of efficiency and portability, Docker has been gaining mind share rapidly, and is now leading the <strong>Containerization</strong> movement. As a developer going out into the world, it is important that we understand this trend and see how we can benefit from it.</p>
 <h3 id="what-will-this-tutorial-teach-me">What will this tutorial teach me?</h3>
-<p>This tutorial aims to be the one-stop shop for getting your hands dirty with Docker. Apart from demystifying the docker landscape, it'll give you hands-on experience with building and deploying your webapps on the Cloud. We'll be using <a href="http://aws.amazon.com">Amazon Web Services</a> to deploy a static website and two dynamic webapps on <a href="https://aws.amazon.com/ec2/">EC2</a> using <a href="https://aws.amazon.com/elasticbeanstalk/">Elastic Beanstalk</a> and <a href="https://aws.amazon.com/ecs/">Elastic Container Service</a>. Even if you have no prior experience with deployments, this tutorial should be all you need to get started.</p>
+<p>This tutorial aims to be the one-stop shop for getting your hands dirty with Docker. Apart from demystifying the Docker landscape, it'll give you hands-on experience with building and deploying your own webapps on the Cloud. We'll be using <a href="http://aws.amazon.com">Amazon Web Services</a> to deploy a static website, and two dynamic webapps on <a href="https://aws.amazon.com/ec2/">EC2</a> using <a href="https://aws.amazon.com/elasticbeanstalk/">Elastic Beanstalk</a> and <a href="https://aws.amazon.com/ecs/">Elastic Container Service</a>. Even if you have no prior experience with deployments, this tutorial should be all you need to get started.</p>
 <h2 id="using-this-document">Using this Document</h2>
 <p>This document contains a series of several sections, each of which explains a particular aspect of Docker. In each section, we will be typing commands (or writing code). All the code used in the tutorial is available in the <a href="http://github.com/prakhar1989/docker-curriculum">Github repo</a>.</p>
 <p><a href="#top" class="top" id="table-of-contents">Top</a></p>
@@ -395,17 +395,17 @@ pre .chunk {
 </blockquote>
 <p><a id="prerequisites"></a></p>
 <h3 id="prerequisites">Prerequisites</h3>
-<p>There are no specific skills needed for this tutorial beyond a basic comfort with the command line and using a text editor. Prior experience in developing web applications would be helpful but not required. As we proceed further along the tutorial, we'll make use of a few cloud services. If you're interested in following along, please create an account on each of these websites - </p>
+<p>There are no specific skills needed for this tutorial beyond a basic comfort with the command line and using a text editor. Prior experience in developing web applications will be helpful but is not required. As we proceed further along the tutorial, we'll make use of a few cloud services. If you're interested in following along, please create an account on each of these websites: </p>
 <ul>
 <li><a href="http://aws.amazon.com/">Amazon Web Services</a></li>
 <li><a href="https://hub.docker.com/">Docker Hub</a></li>
 </ul>
 <p><a id="setup"></a></p>
 <h3 id="setting-up-your-computer">Setting up your computer</h3>
-<p>Getting all the tooling setup on your computer can be a daunting task, but thankfully as Docker has become stable getting it up and running on your favorite OS has become very easy. At first, we'll install docker.</p>
+<p>Getting all the tooling setup on your computer can be a daunting task, but thankfully as Docker has become stable, getting Docker up and running on your favorite OS has become very easy. First, we'll install Docker.</p>
 <h5 id="docker">Docker</h5>
-<p>Until a few releases ago, running docker on OSX and Windows was quite a hassle. Lately however, docker has invested significantly into improving the on-boarding experience for its users on these OSes and hence running Docker now is a cakewalk. The <em>getting started</em> guide on Docker has detailed instructions for setting up Docker on <a href="http://docs.docker.com/mac/step_one/">Mac</a>, <a href="http://docs.docker.com/linux/step_one/">Linux</a> and <a href="http://docs.docker.com/windows/step_one/">Windows</a>.</p>
-<p>Once you are done installing docker, test your docker installation by running the following</p>
+<p>Until a few releases ago, running Docker on OSX and Windows was quite a hassle. Lately however, Docker has invested significantly into improving the on-boarding experience for its users on these OSes, thus running Docker now is a cakewalk. The <em>getting started</em> guide on Docker has detailed instructions for setting up Docker on <a href="http://docs.docker.com/mac/step_one/">Mac</a>, <a href="http://docs.docker.com/linux/step_one/">Linux</a> and <a href="http://docs.docker.com/windows/step_one/">Windows</a>.</p>
+<p>Once you are done installing Docker, test your Docker installation by running the following:</p>
 <pre><code>$ docker run hello-world
 
 Hello from Docker.
@@ -424,8 +424,8 @@ $ pip --version
 pip 7.1.2 from /Library/Python/2.7/site-packages/pip-7.1.2-py2.7.egg (python 2.7)
 </code></pre>
 
-<h5 id="java">Java</h5>
-<p>The app that we'll be developing will be using <a href="https://www.elastic.co/">Elasticsearch</a> for storage and search. In order to run elasticsearch locally, make sure you have Java installed. If Java is installed, typing <code>java -version</code> in your terminal should give you an output similar to the one below.</p>
+<h5 id="java-optional">Java (optional)</h5>
+<p>The app that we'll be developing will be using <a href="https://www.elastic.co/">Elasticsearch</a> for storage and search. In order to run elasticsearch locally, make sure you have Java installed. The tutorial will run everything inside a container so having Java locally is not strictly required. If Java is installed, typing <code>java -version</code> in your terminal should give you an output similar to the one below.</p>
 <pre><code>$ java -version
 java version &quot;1.8.0_60&quot;
 Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
@@ -436,15 +436,15 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
 <p><a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="busybox"></a></p>
 <h2 id="10-playing-with-busybox">1.0 Playing with Busybox</h2>
-<p>Now that we have everything setup, it's time to get our hands dirty. In this section, we are going to run a <a href="https://en.wikipedia.org/wiki/BusyBox">Busybox</a> (a lightweight linux distribution) container on our system and get a taste of the <code>docker run</code> command.</p>
-<p>To get started, let's run the following in our terminal </p>
+<p>Now that we have everything setup, it's time to get our hands dirty. In this section, we are going to run a <a href="https://en.wikipedia.org/wiki/BusyBox">Busybox</a> container (a lightweight linux distribution) on our system and get a taste of the <code>docker run</code> command.</p>
+<p>To get started, let's run the following in our terminal:</p>
 <pre><code>$ docker pull busybox
 </code></pre>
 
 <blockquote>
-<p>Note: Depending on how you've installed docker on your system, you might see a <code>permission denied</code> error on running the above command. If you're on a Mac, make sure docker engine is running. If you're on Linux, then prefix your <code>docker</code> commands with <code>sudo</code>. Alternatively you can <a href="http://docs.docker.com/engine/installation/ubuntulinux/#create-a-docker-group">create a docker group</a> to get rid of this issue.</p>
+<p>Note: Depending on how you've installed docker on your system, you might see a <code>permission denied</code> error after running the above command. If you're on a Mac, make sure the Docker engine is running. If you're on Linux, then prefix your <code>docker</code> commands with <code>sudo</code>. Alternatively you can <a href="http://docs.docker.com/engine/installation/ubuntulinux/#create-a-docker-group">create a docker group</a> to get rid of this issue.</p>
 </blockquote>
-<p>What the <code>pull</code> command does is it fetches the busybox <strong>image</strong> from the <strong>docker registry</strong> and saves it in our system. You can use the <code>docker images</code> command to see a list of all images on your system.</p>
+<p>The <code>pull</code> command fetches the busybox <strong>image</strong> from the <strong>Docker registry</strong> and saves it in our system. You can use the <code>docker images</code> command to see a list of all images on your system.</p>
 <pre><code>$ docker images
 REPOSITORY              TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 busybox                 latest              c51f86c28340        4 weeks ago         1.109 MB
@@ -452,30 +452,30 @@ busybox                 latest              c51f86c28340        4 weeks ago     
 
 <p><a id="dockerrun"></a></p>
 <h3 id="11-docker-run">1.1 Docker Run</h3>
-<p>Great! Lets now lets run a docker <strong>container</strong> based on this image. To do that we are going to use the almighty <code>docker run</code> command. </p>
+<p>Great! Let's now run a Docker <strong>container</strong> based on this image. To do that we are going to use the almighty <code>docker run</code> command. </p>
 <pre><code>$ docker run busybox
 $
 </code></pre>
 
-<p>Wait, nothing happened! Is that a bug? Well, no. Behind the scenes, a lot of stuff happened. When you call <code>run</code>, the docker client finds the image (busybox in this case) loads up the container and then runs a command in that container. When we run <code>docker run busybox</code>, we didn't provide a command so the container booted up, ran an empty command and then exited. 
+<p>Wait, nothing happened! Is that a bug? Well, no. Behind the scenes, a lot of stuff happened. When you call <code>run</code>, the Docker client finds the image (busybox in this case), loads up the container and then runs a command in that container. When we run <code>docker run busybox</code>, we didn't provide a command, so the container booted up, ran an empty command and then exited. 
 Well, yeah - kind of a bummer. Let's try something more exciting.</p>
 <pre><code>$ docker run busybox echo &quot;hello from busybox&quot;
 hello from busybox
 </code></pre>
 
-<p>Nice - finally we see some output. In this case, the docker client dutifully ran the <code>echo</code> command in our busybox container and then exited it. If you've noticed, all of that happened pretty quickly. Imagine booting up a virtual machine, running a command and then killing it. Now you know why they say containers are fast! Ok, now it's time to see the <code>docker ps</code> command. The <code>docker ps</code> command tells you what all containers are currently running.</p>
+<p>Nice - finally we see some output. In this case, the Docker client dutifully ran the <code>echo</code> command in our busybox container and then exited it. If you've noticed, all of that happened pretty quickly. Imagine booting up a virtual machine, running a command and then killing it. Now you know why they say containers are fast! Ok, now it's time to see the <code>docker ps</code> command. The <code>docker ps</code> command shows you all containers that are currently running.</p>
 <pre><code>$ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 </code></pre>
 
-<p>Since no containers are running, we see a blank line. Let's try a more useful variant - <code>docker ps -a</code> </p>
+<p>Since no containers are running, we see a blank line. Let's try a more useful variant: <code>docker ps -a</code> </p>
 <pre><code>$ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
 305297d7a235        busybox             &quot;uptime&quot;            11 minutes ago      Exited (0) 11 minutes ago                       distracted_goldstine
 ff0a5c3750b9        busybox             &quot;sh&quot;                12 minutes ago      Exited (0) 12 minutes ago                       elated_ramanujan
 </code></pre>
 
-<p>So what we see above is a list of all containers that we ran. Do notice that the <code>STATUS</code> column shows that these containers exited a few minutes ago. You're probably wondering that if there's a way to run more than just one command in a container. Let's try that now</p>
+<p>So what we see above is a list of all containers that we ran. Do notice that the <code>STATUS</code> column shows that these containers exited a few minutes ago. You're probably wondering if there is a way to run more than just one command in a container. Let's try that now:</p>
 <pre><code>$ docker run -it busybox sh
 / # ls
 bin   dev   etc   home  proc  root  sys   tmp   usr   var
@@ -485,18 +485,18 @@ bin   dev   etc   home  proc  root  sys   tmp   usr   var
 
 <p>Running the <code>run</code> command with the <code>-it</code> flags attaches us to an interactive tty in the container. Now we can run as many commands in the container as we want. Take some time to run your favorite commands. </p>
 <blockquote>
-<p><strong>Danger Zone</strong>: If you're feeling particularly adventureous you can try <code>rm -rf bin</code> in the container. Make sure you run this command in the container and <strong>not</strong> in your laptop. Doing this will not make any other commands like <code>ls</code>, <code>echo</code> work. Once everything stop working you can exit the container and then run it back up again with the <code>docker run -it busybox sh</code> command. Since docker creates a new container everytime, everything should start working back again.</p>
+<p><strong>Danger Zone</strong>: If you're feeling particularly adventurous you can try <code>rm -rf bin</code> in the container. Make sure you run this command in the container and <strong>not</strong> in your laptop. Doing this will not make any other commands like <code>ls</code>, <code>echo</code> work. Once everything stops working, you can exit the container and then start it up again with the <code>docker run -it busybox sh</code> command. Since Docker creates a new container every time, everything should start working again.</p>
 </blockquote>
 <p>That concludes a whirlwind tour of the mighty <code>docker run</code> command which would most likely be the command you'll use most often. It makes sense to spend some time getting comfortable with it. To find out more about <code>run</code>, use <code>docker run --help</code> to see a list of all flags it supports. As we proceed further, we'll see a few more variants of <code>docker run</code>.</p>
 <p><a id="terminology"></a></p>
 <h3 id="12-terminology">1.2 Terminology</h3>
-<p>In the last section, we used a lot of docker-specific jargon which might be confusing to some. So before we go further, let me clarify some terminology that is used frequently in the docker ecosystem.</p>
+<p>In the last section, we used a lot of Docker-specific jargon which might be confusing to some. So before we go further, let me clarify some terminology that is used frequently in the Docker ecosystem.</p>
 <ul>
 <li><em>Images</em> - The blueprints of our application which form the basis of containers. In the demo above, we used the <code>docker pull</code> command to download the <strong>busybox</strong> image.</li>
-<li><em>Containers</em> - Created from docker images and run the actual application. We create a container using <code>docker run</code> which we did using the busybox image that we downloaded. The list of running containers can be seen using the <code>docker ps</code> command.</li>
-<li><em>Docker Daemon</em> - The background service running on the host that manages building, running and distributing docker containers. The daemon is the process that runs in the operation system to which clients talk to.</li>
+<li><em>Containers</em> - Created from Docker images and run the actual application. We create a container using <code>docker run</code> which we did using the busybox image that we downloaded. A list of running containers can be seen using the <code>docker ps</code> command.</li>
+<li><em>Docker Daemon</em> - The background service running on the host that manages building, running and distributing Docker containers. The daemon is the process that runs in the operation system to which clients talk to.</li>
 <li><em>Docker Client</em> - The command line tool that allows the user to interact with the daemon. More generally, there can be other forms of clients too - such as <a href="https://kitematic.com/">Kitematic</a> which provide a GUI to the users.</li>
-<li><em>Docker hub</em> - A <a href="https://hub.docker.com/explore/">registry</a> of docker images. You can think of the registry as a directory of all available docker images. If required, one can host their own docker registries and can use them for pulling images.</li>
+<li><em>Docker hub</em> - A <a href="https://hub.docker.com/explore/">registry</a> of Docker images. You can think of the registry as a directory of all available Docker images. If required, one can host their own Docker registries and can use them for pulling images.</li>
 </ul>
 <p><a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="webapps"></a></p>
@@ -555,10 +555,23 @@ hello-world                     latest              0a6ba66e537a        11 weeks
 </code></pre>
 
 <p>To get a new Docker image you can either get it from a registry (such as the docker hub) or create your own. There are tens of thousands of images available on <a href="https://hub.docker.com">Docker hub</a>. You can also search for images directly from the command line using <code>docker search</code>. </p>
-<p>An important distinction to be aware of when it comes to images is between base and user images. </p>
+<p>An important distinction to be aware of when it comes to images is between base and child images.</p>
 <ul>
-<li><strong>Base images</strong> are images that officially maintained and supported by the folks at Docker. These are typically one word long. In the list of images above, the <code>python</code>, <code>ubuntu</code>, <code>busybox</code> and <code>hello-world</code> images are base images. </li>
-<li><strong>User images</strong> are images created and shared by users like you and me. They build on base images and add additional functionality. Typically these are formatted as <code>user/image-name</code>.</li>
+<li>
+<p><strong>Base images</strong> are images that has no parent image, usually images with an OS like ubuntu, busybox or debian.</p>
+</li>
+<li>
+<p><strong>Child images</strong> are images that build on base images and add additional functionality.</p>
+</li>
+</ul>
+<p>Then there are two more types of images that can be both base and child images, they are official and user images.</p>
+<ul>
+<li>
+<p><strong>Official images</strong> are images that officially maintained and supported by the folks at Docker. These are typically one word long. In the list of images above, the <code>python</code>, <code>ubuntu</code>, <code>busybox</code> and <code>hello-world</code> images are base images. </p>
+</li>
+<li>
+<p><strong>User images</strong> are images created and shared by users like you and me. They build on base images and add additional functionality. Typically these are formatted as <code>user/image-name</code>.</p>
+</li>
 </ul>
 <p><a id="our-image"></a></p>
 <h3 id="23-our-first-image">2.3 Our First Image</h3>
@@ -715,7 +728,7 @@ Login Succeeded
 <p><a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="multi-container"></a></p>
 <h2 id="multi-container-environments">Multi-container Environments</h2>
-<p>In the last section, we saw how easy and fun it is to run applications with Docker. We started with a simple static website and then tried a Flask app both of which we could run locally and on the cloud with just a few commands. One thing both these apps had in common where that they were running in a <strong>single container</strong>. </p>
+<p>In the last section, we saw how easy and fun it is to run applications with Docker. We started with a simple static website and then tried a Flask app both of which we could run locally and on the cloud with just a few commands. One thing both these apps had in common was that they were running in a <strong>single container</strong>. </p>
 <p>Those of you who have experience running services in production, know that usually apps nowadays are not that simple. There's almost always a database (or any other kind of persistent storage) involved. Systems such as <a href="http://redis.io/">Redis</a> and <a href="http://memcached.org/">Memcached</a> have become the <em>de riguer</em> of most web applications architectures. Hence, in this section we going to spend some time learning how to Dockerize applications which rely on different services to run.</p>
 <p>In particular we are going to see how we can run and manage <strong>multi-container</strong> docker environments. Why multi-container you might ask? Well, one of the key plus points of Docker is the way it provides isolation. The idea of bundling a process with its dependencies in a sandbox (called containers) is what makes this so powerful.</p>
 <p>Just like it's a good strategy to decouple your application tiers, it is wise to keep containers for each of the <strong>services</strong> separate. Each tier is likely to have different resource needs and those needs might grow at different rates. By separating the tiers into different containers, we can compose each tier using the most appropriate instance type based on different resource needs. This also plays in very well with the whole <a href="http://martinfowler.com/articles/microservices.html">microservices</a> movement which is one of the main reasons why Docker (or any other container technology) is at the <a href="https://medium.com/aws-activate-startup-blog/using-containers-to-build-a-microservices-architecture-6e1b8bacb7d1#.xl3wryr5z">forefront</a> of modern microservices architectures.</p>
@@ -724,7 +737,7 @@ Login Succeeded
 <p>The app that we're going to Dockerize is called <a href="http://sf-foodtrucks.xyz">SF Food Trucks</a>. My goal in building this app was to have something that is useful (in that it resembles a real-world application), relies on at least one service but is not too complex for the purpose of this tutorial. This is what I came up with -</p>
 <p><img src="https://raw.githubusercontent.com/prakhar1989/FoodTrucks/master/shot.png" alt="sf food trucks"></p>
 <p>The app's backend is written in Python (Flask) and for search it uses <a href="https://www.elastic.co/products/elasticsearch">Elasticsearch</a>. Like everything else in this tutorial, the entire source is available on <a href="http://github.com/prakhar1989/FoodTrucks">Github</a>. We'll use this as our candidate application for learning out how to build, run and deploy a multi-container environment.</p>
-<p>Now that you're excited (hopefully), let's think how of we can Dockerize the app. We can see that the application consists of a Flask backend server and an Elasticsearch service. A natural way to split this app would be to have two containers - one running the Flask process and another running the Elasticsearch (ES) process. That way if our app becomes popular, we can scale it by adding more containers depending on where the bottleneck lies.</p>
+<p>Now that you're excited (hopefully), let's think of how we can Dockerize the app. We can see that the application consists of a Flask backend server and an Elasticsearch service. A natural way to split this app would be to have two containers - one running the Flask process and another running the Elasticsearch (ES) process. That way if our app becomes popular, we can scale it by adding more containers depending on where the bottleneck lies.</p>
 <p>Great so we need two containers. That shouldn't be hard right? We've already built our own Flask container in the previous section. And for Elasticsearch, let's see if we can find something on the hub.</p>
 <pre><code>$ docker search elasticsearch
 NAME                              DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
@@ -1026,6 +1039,9 @@ $ ./setup-docker.sh
 </code></pre>
 
 <p>And that's it! If you ask me, I find this to be an extremely awesome and powerful of sharing and running your applications!</p>
+<p><a id="docker-links"></a></p>
+<h5 id="docker-links">Docker Links</h5>
+<p>Before we leave this section though, I should mention that <code>docker network</code> is a relatively new feature - it was a part of Docker 1.9 <a href="https://blog.docker.com/2015/11/docker-1-9-production-ready-swarm-multi-host-networking/">release</a>. Before <code>network</code> came along, links were the accepted way of getting containers to talk to each other. According to the official <a href="https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/">docs</a>, linking is expected to be deprecated in future releases. In case you stumble across tutorials or blog posts that use <code>link</code> to bridge containers, remember to use <code>network</code> instead.</p>
 <p><a id="docker-compose"></a></p>
 <h3 id="33-docker-compose">3.3 Docker Compose</h3>
 <p>Till now we've spent all our time in exploring the docker client. In the docker ecosystem, however, there are a bunch of other open-source tools which play very nicely with Docker. Few of them are -</p>
@@ -1122,8 +1138,143 @@ foodtrucks_es_1    /docker-entrypoint.sh elas ...   Up      9200/tcp, 9300/tcp
 foodtrucks_web_1   python app.py                    Up      0.0.0.0:5000-&gt;5000/tcp
 </code></pre>
 
-<p>Unsurprisingly, we can see both the containers running successfully. Where do the names come from? Those were created automatically by Compose. </p>
-<p>With docker compose, you can also pause your services, run a one-off command on a container and even scale the number of containers. Hopefully I was able to show you how easy it is to manage multi-container environments with Compose. In the final section, we are going to deploy our app to AWS!</p>
+<p>Unsurprisingly, we can see both the containers running successfully. Where do the names come from? Those were created automatically by Compose. But does <em>Compose</em> also create the network automatically? Good question! Let's find out.</p>
+<p>First off, let us stop the services from running. We can always bring them back up in just one command.</p>
+<pre><code>$ docker-compose stop
+Stopping foodtrucks_web_1 ... done
+Stopping foodtrucks_es_1 ... done
+</code></pre>
+
+<p>While we're are at it, we'll also remove the <code>foodtrucks</code> network that we created last time. This should not be required since <em>Compose</em> would automatically manage this for us.</p>
+<pre><code>$ docker network rm foodtrucks
+$ docker network ls
+NETWORK ID          NAME                DRIVER
+4eec273c054e        bridge              bridge
+9347ae8783bd        none                null
+54df57d7f493        host                host
+</code></pre>
+
+<p>Great! Now that we have a clean slate, let's re-run our services and see if <em>Compose</em> does it's magic.</p>
+<pre><code>$ docker-compose up -d
+Recreating foodtrucks_es_1
+Recreating foodtrucks_web_1
+$ docker ps
+CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                    NAMES
+f50bb33a3242        prakhar1989/foodtrucks-web   &quot;python app.py&quot;          14 seconds ago      Up 13 seconds       0.0.0.0:5000-&gt;5000/tcp   foodtrucks_web_1
+e299ceeb4caa        elasticsearch                &quot;/docker-entrypoint.s&quot;   14 seconds ago      Up 14 seconds       9200/tcp, 9300/tcp       foodtrucks_es_1
+</code></pre>
+
+<p>So far, so good. Time to see if any networks were created.</p>
+<pre><code>$ docker network ls
+NETWORK ID          NAME                DRIVER
+4eec273c054e        bridge              bridge
+9347ae8783bd        none                null
+54df57d7f493        host                host
+</code></pre>
+
+<p>Wait? Nothing changed! But then how are these two containers talking to each other. The answer is <strong>links</strong>! I ended the last section with a <a href="#docker-links">small caveat</a> saying that links are now a deprecated feature. Given how recent <code>network</code> is, <em>Compose</em> still hasn't caught up to the feature yet. However, the support is experimental and hidden behind a flag <code>--x-networking</code>.</p>
+<pre><code>$ docker-compose
+Define and run multi-container applications with Docker.
+
+Usage:
+  docker-compose [-f=&lt;arg&gt;...] [options] [COMMAND] [ARGS...]
+  docker-compose -h|--help
+
+Options:
+  -f, --file FILE           Specify an alternate compose file (default: docker-compose.yml)
+  -p, --project-name NAME   Specify an alternate project name (default: directory name)
+  --x-networking            (EXPERIMENTAL) Use new Docker networking functionality.
+                            Requires Docker 1.9 or later.
+  --x-network-driver DRIVER (EXPERIMENTAL) Specify a network driver (default: &quot;bridge&quot;).
+                            Requires Docker 1.9 or later.
+  --verbose                 Show more output
+  -v, --version             Print version and exit
+</code></pre>
+
+<p>To test this out, let's quickly do the following - </p>
+<pre><code>$ docker-compose stop
+Stopping foodtrucks_web_1 ... done
+Stopping foodtrucks_es_1 ... done
+
+$ docker-compose --x-networking up -d
+WARNING:
+&quot;web&quot; defines links, which are not compatible with Docker networking and will be ignored.
+Future versions of Docker will not support links - you should remove them for forwards-compatibility.
+
+Creating network &quot;foodtrucks&quot; with driver &quot;None&quot;
+Recreating foodtrucks_es_1
+Recreating foodtrucks_web_1
+
+$ docker network ls
+NETWORK ID          NAME                DRIVER
+0a49e854f6a2        foodtrucks          bridge
+4eec273c054e        bridge              bridge
+9347ae8783bd        none                null
+54df57d7f493        host                host
+</code></pre>
+
+<p>Finally! Now there's our beloved <code>foodtrucks</code> network. As indicated on screen, <em>Compose</em> created the network and also gave us a warning for using a deprecated feature. Let's see our services now. Hopefully, all should be rosy.</p>
+<pre><code>      Name                    Command               State          Ports
+-------------------------------------------------------------------------------
+foodtrucks_es_1    /docker-entrypoint.sh elas ...   Up       9200/tcp, 9300/tcp
+foodtrucks_web_1   python app.py                    Exit 1
+</code></pre>
+
+<p>Oh no! Our web-app crashed! What happened?</p>
+<pre><code>docker-compose logs
+Attaching to foodtrucks_web_1, foodtrucks_es_1
+es_1  | [2016-01-14 19:30:39,124][INFO ][node                     ] [Hogun] version[2.1.1], pid[1], build[40e2c53/2015-12-15T13:05:55Z]
+es_1  | [2016-01-14 19:30:39,130][INFO ][node                     ] [Hogun] initializing ...
+es_1  | [2016-01-14 19:30:39,189][INFO ][plugins                  ] [Hogun] loaded [], sites []
+es_1  | [2016-01-14 19:30:39,238][INFO ][env                      ] [Hogun] using [1] data paths, mounts [[/usr/share/elasticsearch/data (/dev/sda1)]], net usable_space [16gb], net total_space [18.1gb], spins? [possibly], types [ext4]
+es_1  | [2016-01-14 19:30:41,688][INFO ][node                     ] [Hogun] initialized
+es_1  | [2016-01-14 19:30:41,701][INFO ][node                     ] [Hogun] starting ...
+es_1  | [2016-01-14 19:30:41,764][WARN ][common.network           ] [Hogun] publish address: {0.0.0.0} is a wildcard address, falling back to first non-loopback: {172.18.0.2}
+es_1  | [2016-01-14 19:30:41,764][INFO ][transport                ] [Hogun] publish_address {172.18.0.2:9300}, bound_addresses {[::]:9300}
+es_1  | [2016-01-14 19:30:41,771][INFO ][discovery                ] [Hogun] elasticsearch/AsSuepIDTvqeZ_0zwnXNiw
+es_1  | [2016-01-14 19:30:44,837][INFO ][cluster.service          ] [Hogun] new_master {Hogun}{AsSuepIDTvqeZ_0zwnXNiw}{172.18.0.2}{172.18.0.2:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+es_1  | [2016-01-14 19:30:44,874][WARN ][common.network           ] [Hogun] publish address: {0.0.0.0} is a wildcard address, falling back to first non-loopback: {172.18.0.2}
+es_1  | [2016-01-14 19:30:44,874][INFO ][http                     ] [Hogun] publish_address {172.18.0.2:9200}, bound_addresses {[::]:9200}
+es_1  | [2016-01-14 19:30:44,874][INFO ][node                     ] [Hogun] started
+es_1  | [2016-01-14 19:30:44,887][INFO ][gateway                  ] [Hogun] recovered [0] indices into cluster_state
+web_1 | Unable to connect to ES. Retying in 5 secs...
+web_1 | Unable to connect to ES. Retying in 5 secs...
+web_1 | Unable to connect to ES. Retying in 5 secs...
+web_1 | Out of retries. Bailing out...
+</code></pre>
+
+<p>It seems that the Flask app was unable to reach ES. But how did that happen? <em>Compose</em> did create the network and attached the containers to it too. The answer is that our services join the network with different aliases - i.e. <code>foodtrucks_web_1</code> and <code>foodtrucks_es_1</code>. Since our Flask app expects the ES services to be called <code>es</code> and not <code>foodtrucks_es_1</code> it bails out. </p>
+<p>To fix this, we need to make a small change in our <code>docker-compose.yml</code> file. While we are at it, let's also remove <code>links</code> so that we can get rid of the pesky warning.</p>
+<pre><code>es:
+  image: elasticsearch
+  container_name: &quot;es&quot;
+web:
+  image: prakhar1989/foodtrucks-web
+  command: python app.py
+  ports:
+    - &quot;5000:5000&quot;
+  volumes:
+    - .:/code
+</code></pre>
+
+<p>Using <code>container_name</code> we can provide a custom name for our service.  In the future releases, this will be more avenues for configuration as per the <a href="https://docs.docker.com/compose/networking/">docs</a>.</p>
+<blockquote>
+<p>Note: in the next release there will be additional aliases for the container, including a short name without the project name and container index. The full container name will remain as one of the alias for backwards compatibility.</p>
+</blockquote>
+<p>Let's try it now and see if that fixes our issue.</p>
+<pre><code>$ docker-compose --x-networking up -d
+Starting foodtrucks_web_1
+Starting es
+
+$ docker-compose ps
+      Name                    Command               State           Ports
+----------------------------------------------------------------------------------
+es                 /docker-entrypoint.sh elas ...   Up      9200/tcp, 9300/tcp
+foodtrucks_web_1   python app.py                    Up      0.0.0.0:5000-&gt;5000/tcp
+</code></pre>
+
+<p>And voila! Our app is back in business! As of now, you can use <code>links</code> in your <code>docker-compose</code> files until networking support stabilizes in <em>Compose</em>. Do keep an eye out on future releases of Compose!</p>
+<p>That concludes our tour of docker compose.  With docker compose, you can also pause your services, run a one-off command on a container and even scale the number of containers. Hopefully I was able to show you how easy it is to manage multi-container environments with Compose. In the final section, we are going to deploy our app to AWS!</p>
 <p><a id="aws-ecs"></a></p>
 <h3 id="34-aws-elastic-container-service">3.4 AWS Elastic Container Service</h3>
 <p>In the last section we used <code>docker compose</code> to run our app locally with a single command - <code>docker-compose up</code>. Now that we have a functioning app we want to share this with the world, get some users, make tons of money and buy a big house in Miami. Learning the last three are beyond the scope of tutorial so we'll spend our time instead on figuring out how we can deploy our multi-container apps on the cloud with AWS.</p>
@@ -1170,7 +1321,7 @@ web:
     - es
 </code></pre>
 
-<p>The only changes we make in the original <code>docker-compose.yml</code> are of providing the <code>mem_limit</code> and <code>cpu_shares</code> values for each container. Since we our apps will run on <code>t2.micro</code> instances, we allocate 250mb of memory. One another thing we need to do before we move onto the next step is to publish our image on Docker hub. As of this writing, ecs-cli <strong>does not</strong> support the <code>build</code> command - which is <a href="https://docs.docker.com/compose/compose-file/#build">supported</a> perfectly by Docker Compose.</p>
+<p>The only changes we make in the original <code>docker-compose.yml</code> are of providing the <code>mem_limit</code> and <code>cpu_shares</code> values for each container. Since we our apps will run on <code>t2.micro</code> instances, we allocate 250mb of memory. Another thing we need to do before we move onto the next step is to publish our image on Docker hub. As of this writing, ecs-cli <strong>does not</strong> support the <code>build</code> command - which is <a href="https://docs.docker.com/compose/compose-file/#build">supported</a> perfectly by Docker Compose.</p>
 <pre><code>$ docker push prakhar1989/foodtrucks-web
 </code></pre>
 
